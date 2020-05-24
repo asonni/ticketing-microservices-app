@@ -10,6 +10,8 @@ declare global {
   }
 }
 
+jest.mock('../nats-wrapper.ts');
+
 let mongo: any;
 beforeAll(async () => {
   process.env.JWT_KEY = 'secret';
@@ -19,11 +21,12 @@ beforeAll(async () => {
 
   await mongoose.connect(mongoUri, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   });
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
@@ -40,7 +43,7 @@ global.signin = () => {
   // Build a JWT payload. { id, email }
   const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
-    email: 'test@test.com',
+    email: 'test@test.com'
   };
 
   // Create the JWT!
