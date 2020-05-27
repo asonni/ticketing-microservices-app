@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^13.11.1",
-    "node-nats-streaming": "^0.2.6",
+    "@types/node": "^14.0.5",
+    "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   }
 }
