@@ -14,7 +14,7 @@ router.post(
     body('password')
       .trim()
       .isLength({ min: 4, max: 20 })
-      .withMessage('Password must be between 4 and characters'),
+      .withMessage('Password must be between 4 and characters')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -33,12 +33,13 @@ router.post(
     const userJwt = jwt.sign(
       {
         id: user.id,
-        email: user.email,
+        email: user.email
       },
       process.env.JWT_KEY!
     );
 
     // Store it on session object
+    // @ts-ignore
     req.session = { jwt: userJwt };
 
     res.status(201).send(user);

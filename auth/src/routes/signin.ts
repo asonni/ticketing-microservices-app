@@ -12,10 +12,7 @@ router.post(
   '/api/users/signin',
   [
     body('email').isEmail().withMessage('Email must be valid'),
-    body('password')
-      .trim()
-      .notEmpty()
-      .withMessage('You must supply a password'),
+    body('password').trim().notEmpty().withMessage('You must supply a password')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -38,12 +35,13 @@ router.post(
     const userJwt = jwt.sign(
       {
         id: existingUser.id,
-        email: existingUser.email,
+        email: existingUser.email
       },
       process.env.JWT_KEY!
     );
 
     // Store it on session object
+    // @ts-ignore
     req.session = { jwt: userJwt };
 
     res.status(200).send(existingUser);
