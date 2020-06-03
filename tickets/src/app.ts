@@ -4,7 +4,7 @@ import cookieSession from 'cookie-session';
 import {
   errorHandler,
   NotFoundError,
-  currentUser,
+  currentUser
 } from '@asonni-tickets/common';
 
 import { createTicketRouter } from './routes/new';
@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
+    // secure: process.env.NODE_ENV !== 'test',
+    secure: false
   })
 );
 app.use(currentUser);

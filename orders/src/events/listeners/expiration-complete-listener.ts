@@ -14,7 +14,7 @@ import { natsWrapper } from '../../nats-wrapper';
 export class ExpirationCompleteListener extends Listener<
   ExpirationCompleteEvent
 > {
-  subject: Subjects.ExpirationComplete = Subjects.ExpirationComplete;
+  readonly subject = Subjects.ExpirationComplete;
   queueGroupName = queueGroupName;
 
   async onMessage(data: ExpirationCompleteEvent['data'], msg: Message) {
